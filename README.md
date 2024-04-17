@@ -59,15 +59,15 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   Open another new terminal, edit `ROCKET_PORT` in `.env` to `8003`, then execute `cargo run`.
 
 ## Mandatory Checklists (Subscriber)
--   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop-receiver to a new repository.
+-   [x] Clone https://gitlab.com/ichlaffterlalu/bambangshop-receiver to a new repository.
 -   **STAGE 1: Implement models and repositories**
-    -   [ ] Commit: `Create Notification model struct.`
-    -   [ ] Commit: `Create SubscriberRequest model struct.`
-    -   [ ] Commit: `Create Notification database and Notification repository struct skeleton.`
-    -   [ ] Commit: `Implement add function in Notification repository.`
-    -   [ ] Commit: `Implement list_all_as_string function in Notification repository.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
--   **STAGE 3: Implement services and controllers**
+    -   [x] Commit: `Create Notification model struct.`
+    -   [x] Commit: `Create SubscriberRequest model struct.`
+    -   [x] Commit: `Create Notification database and Notification repository struct skeleton.`
+    -   [x] Commit: `Implement add function in Notification repository.`
+    -   [x] Commit: `Implement list_all_as_string function in Notification repository.`
+    -   [x] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
+-   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
     -   [ ] Commit: `Implement subscribe function in Notification controller.`
@@ -85,5 +85,13 @@ This is the place for you to write reflections:
 ### Mandatory (Subscriber) Reflections
 
 #### Reflection Subscriber-1
+1. Terdapat beberapa alasan penggunaan RwLock<>,
+    - **Masalah Pembaca-Penulis**: Dalam kasus notifikasi, biasanya ada jauh lebih banyak operasi baca (pengamat memeriksa notifikasi baru) daripada operasi menulis (notifikasi baru ditambahkan). RwLock memungkinkan banyak pembaca atau satu penulis pada satu waktu, yang sesuai untuk skenario ini. Menggunakan Mutex akan memperkenalkan persaingan yang tidak perlu karena hanya satu thread yang diizinkan untuk mengakses data pada satu waktu, bahkan untuk operasi hanya baca.
+    - **Concurrency**: Aplikasi ini mungkin memiliki beberapa _thread_ yang secara bersamaan mengakses atau memodifikasi daftar notifikasi. Oleh karena itu, kita memerlukan mekanisme sinkronisasi untuk memastikan keselamatan _thread_ dan mencegah perlombaan data.
+    - **Kinerja**: RwLock menyediakan kinerja yang lebih baik untuk skenario ketika terdapat bacaan yang sering dan penulisan yang sesekali dibandingkan dengan Mutex yang dapat menyebabkan persaingan dan penurunan kinerja dalam skenario baca yang tinggi.
+
+2. Meskipun Rust memiliki konsep variabel statis seperti di Java, namun pendekatan Rust terhadap keselamatan memori dan pola konkurensi yang aman membuatnya tidak mengizinkan perubahan pada variabel statis setelah inisialisasi. Sebagai gantinya, Rust mendorong penggunaan pola desain yang aman dan ketat untuk mengelola data bersama dalam kasus konkurensi.
 
 #### Reflection Subscriber-2
+1. 
+2. 
