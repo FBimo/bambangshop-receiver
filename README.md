@@ -93,5 +93,16 @@ This is the place for you to write reflections:
 2. Meskipun Rust memiliki konsep variabel statis seperti di Java, namun pendekatan Rust terhadap keselamatan memori dan pola konkurensi yang aman membuatnya tidak mengizinkan perubahan pada variabel statis setelah inisialisasi. Sebagai gantinya, Rust mendorong penggunaan pola desain yang aman dan ketat untuk mengelola data bersama dalam kasus konkurensi.
 
 #### Reflection Subscriber-2
-1. 
-2. 
+1. Beberapa hal yang saya pelajari setelah adanya tutorial ini seperti,
+
+    - **Struktur Proyek**: Saya belajar tentang struktur proyek Rust yang umum digunakan, seperti struktur modul dan bagaimana file lib.rs digunakan sebagai entry point untuk sebuah crate (library Rust).
+
+    - **_Dependency Management_**: Saya melihat bagaimana _dependencies_ ditambahkan dan dikelola dalam proyek Rust menggunakan _file_ `Cargo.toml`. Ini membantu saya memahami dependensi eksternal yang digunakan dalam proyek ini.
+
+    - **Concurrency Patterns**: Saya melihat bagaimana pola konkurensi yang aman diimplementasikan dalam proyek ini, seperti menggunakan RwLock untuk mengelola akses ke data bersama secara _thread-safe_.
+
+    - **_Static Variables_**: Saya memahami mengapa lazy_static digunakan untuk mendefinisikan variabel statis dalam proyek ini, dan mengapa Rust tidak mengizinkan mutasi langsung pada variabel statis.
+
+2. Penerapan pola Observer memudahkan penambahan pelanggan baru ke sistem karena tidak memerlukan modifikasi pada subjek atau publisher. Dengan pola ini, pelanggan baru dapat dengan mudah ditambahkan sebagai observer tanpa memengaruhi subjek atau observer lainnya. Ini memungkinkan fleksibilitas yang besar dalam mengelola pelanggan dan memperluas fungsionalitas sistem tanpa memodifikasi bagian inti dari aplikasi. Namun, ketika kita membuat lebih dari satu _instance_ dari aplikasi utama, tantangannya mungkin lebih kompleks. Meskipun pola Observer dapat memudahkan penambahan pelanggan, menangani _multiple instance_ dari aplikasi utama dapat menimbulkan masalah koordinasi dan sinkronisasi antara _instance_ yang berjalan secara paralel. Ini melibatkan masalah seperti koordinasi akses ke sumber daya bersama, manajemen konflik, dan konsistensi data.
+
+3. Tentu, fitur-fitur tersebut akan sangat membantu dalam pengembangan Proyek Grup. Kita dapat berbagi Koleksi yang telah dibuat kepada _programmer_ lainnya agar mereka dapat memahami API yang telah saya rancang dan melakukan pengujian dengan lebih mudah.
